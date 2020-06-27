@@ -25,15 +25,7 @@
   ],
   "rules": {
     "no-underscore-dangle": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true,
-        "parser": "flow",
-        "trailingComma": "all",
-        "arrowParens": "avoid"
-      }
-    ],
+    "prettier/prettier": "error",
     "class-methods-use-this": "off",
     "no-useless-constructor": "off",
     "@typescript-eslint/camelcase": "off",

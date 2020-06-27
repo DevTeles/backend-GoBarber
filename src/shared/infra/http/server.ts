@@ -16,7 +16,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 // para consegui visualizar as imagens de forma estáticas, ex: localhost:3333/files/name_avatar
-app.use('/files', express.static(uploadConfig.tmpFolder));
+app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
 
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
