@@ -35,7 +35,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
     const parsedMonth = String(month).padStart(2, '0');
     // se for 1 retorna 01
 
-    const apopintments = await this.ormRepository.find({
+    const appointments = await this.ormRepository.find({
       where: {
         provider_id,
         date: Raw(
@@ -45,7 +45,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
       },
     });
 
-    return apopintments;
+    return appointments;
   }
 
   public async findAllInDayFromProvider({
@@ -58,7 +58,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
     const parsedMonth = String(month).padStart(2, '0');
     // se for 1 retorna 01
 
-    const apopintments = await this.ormRepository.find({
+    const appointments = await this.ormRepository.find({
       where: {
         provider_id,
         date: Raw(
@@ -69,7 +69,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
       relations: ['user'],
     });
 
-    return apopintments;
+    return appointments;
   }
 
   public async create({

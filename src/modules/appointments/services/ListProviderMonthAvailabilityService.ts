@@ -2,7 +2,11 @@ import { injectable, inject } from 'tsyringe';
 import { getDaysInMonth, getDate, isAfter } from 'date-fns';
 
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
-
+/**
+ * Recebimento das informacoes
+ * Tratativa de Erros/excessoes
+ * Acesso ao repositorio
+ */
 interface IRequest {
   provider_id: string;
   month: number;
@@ -38,7 +42,7 @@ class ListProviderAvailabilityService {
 
     const eachDayArray = Array.from(
       { length: numberOfDaysInMonth },
-      (value, index) => index + 1,
+      (_, index) => index + 1,
     );
 
     const availability = eachDayArray.map(day => {

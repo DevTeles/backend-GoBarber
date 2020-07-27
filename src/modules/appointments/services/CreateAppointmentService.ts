@@ -8,6 +8,12 @@ import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICa
 import Appointment from '../infra/typeorm/entities/Appointment';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
+/**
+ * Recebimento das informacoes
+ * Tratativa de Erros/excessoes
+ * Acesso ao repositorio
+ */
+
 interface IRequest {
   provider_id: string;
   user_id: string;
@@ -70,12 +76,12 @@ class CreateAppointmentService {
       content: `Novo agendamento para dia ${dateFormatted}`,
     });
 
-    await this.cacheProvider.invalidate(
-      `provider-appointments:${provider_id}:${format(
-        appointmentDate,
-        'yyyy-M-d',
-      )}`,
-    );
+    const cacheKey = `provider-appointments:${provider_id}:${format(
+      appointmentDate,
+      'yyyy-M-d',
+    )}`;
+
+    await this.cacheProvider.invalidate(cacheKey);
 
     return appointment;
   }

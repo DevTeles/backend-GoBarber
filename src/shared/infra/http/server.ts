@@ -16,11 +16,11 @@ import '@shared/container';
 
 const app = express();
 
-app.use(rateLimiter);
 app.use(cors());
 app.use(express.json());
 // para consegui visualizar as imagens de forma estáticas, ex: localhost:3333/files/name_avatar
 app.use('/files', express.static(uploadConfig.uploadsFolder));
+app.use(rateLimiter);
 app.use(routes);
 
 app.use(errors());

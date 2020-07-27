@@ -5,6 +5,12 @@ import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
 import User from '@modules/users/infra/typeorm/entities/User';
 
+/**
+ * Recebimento das informacoes
+ * Tratativa de Erros/excessoes
+ * Acesso ao repositorio
+ */
+
 interface IRequest {
   user_id: string;
 }
@@ -28,6 +34,8 @@ class ListProvidersService {
       users = await this.usersRepository.findAllProviders({
         except_user_id: user_id,
       });
+
+      console.log('query no banco foi feita!');
 
       await this.cacheProvider.save(`providers-list:${user_id}`, users);
     }
