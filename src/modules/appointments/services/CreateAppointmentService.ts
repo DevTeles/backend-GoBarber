@@ -64,8 +64,8 @@ class CreateAppointmentService {
     }
 
     const appointment = await this.appointmentsRepository.create({
-      provider_id,
       user_id,
+      provider_id,
       date: appointmentDate,
     });
 

@@ -10,11 +10,14 @@ export default class RedisCacheProvider implements ICacheProvider {
   }
 
   public async save(key: string, value: any): Promise<void> {
+    console.log('salvou key: ', JSON.stringify(value));
     await this.client.set(key, JSON.stringify(value));
   }
 
   public async recover<T>(key: string): Promise<T | null> {
     const data = await this.client.get(key);
+
+    console.log('recover key: ', key, data);
 
     if (!data) {
       return null;
@@ -26,6 +29,7 @@ export default class RedisCacheProvider implements ICacheProvider {
   }
 
   public async invalidate(key: string): Promise<void> {
+    console.log("client.del(key)", key)
     await this.client.del(key);
   }
 
@@ -33,6 +37,8 @@ export default class RedisCacheProvider implements ICacheProvider {
     const keys = await this.client.keys(`${prefix}:*`);
 
     const pipeline = this.client.pipeline();
+
+    console.log('keys/prefix', keys, prefix);
 
     keys.forEach(key => {
       pipeline.del(key);
