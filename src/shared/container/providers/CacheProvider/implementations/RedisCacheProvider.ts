@@ -10,7 +10,6 @@ export default class RedisCacheProvider implements ICacheProvider {
   }
 
   public async save(key: string, value: any): Promise<void> {
-    console.log('salvou key: ', JSON.stringify(value));
     await this.client.set(key, JSON.stringify(value));
   }
 

@@ -4,6 +4,7 @@ import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICa
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 
 import User from '@modules/users/infra/typeorm/entities/User';
+import { classToClass } from 'class-transformer';
 
 /**
  * Recebimento das informacoes
@@ -30,14 +31,20 @@ class ListProvidersService {
       `providers-list:${user_id}`,
     );
 
+    // se quiser invalidar o cache.
+    //users = null;
+
     if (!users) {
       users = await this.usersRepository.findAllProviders({
         except_user_id: user_id,
       });
 
-      console.log('query no banco foi feita!');
+      console.log('query no banco foi feita!', users);
 
-      await this.cacheProvider.save(`providers-list:${user_id}`, users);
+      await this.cacheProvider.save(
+        `providers-list:${user_id}`,
+        classToClass(users)
+      );
     }
 
     return users;
