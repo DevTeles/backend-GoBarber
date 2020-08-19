@@ -32,7 +32,7 @@ class ListProvidersService {
     );
 
     // se quiser invalidar o cache.
-    //users = null;
+    // users = null;
 
     if (!users) {
       users = await this.usersRepository.findAllProviders({
