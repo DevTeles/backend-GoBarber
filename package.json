@@ -15,7 +15,7 @@
     "@types/ioredis": "^4.17.0",
     "@types/mongodb": "^3.5.25",
     "@types/redis": "^2.8.24",
-    "aws-sdk": "^2.709.0",
+    "aws-sdk": "^2.814.0",
     "bcryptjs": "^2.4.3",
     "celebrate": "^12.1.1",
     "class-transformer": "^0.3.1",
